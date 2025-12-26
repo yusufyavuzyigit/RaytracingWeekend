@@ -1,10 +1,12 @@
 #include "core.h"
+#include "ppm_writer.h"
 
 #include <iostream>
 
 void kindly() 
 {
-    std::cout << "Hello there" << std::endl;
+    PPMWriter w(256,256);
+    w.write();
 }
 
 unsigned int Factorial( unsigned int number ) {

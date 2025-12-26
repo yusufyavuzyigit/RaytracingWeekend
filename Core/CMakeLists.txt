@@ -26,6 +26,7 @@ add_library(core_lib)
 target_sources(core_lib
     PRIVATE
         src/core.cpp
+        src/ppm_writer.cpp
 )
 
 target_include_directories(core_lib

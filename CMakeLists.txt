@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.60)
-project(ProjName LANGUAGES CXX)
+project(RTW LANGUAGES CXX)
 
 option(ENABLE_TESTS "Build unit tests" OFF)
 option(ENABLE_BENCHMARKS "Build benchmarks" OFF)
