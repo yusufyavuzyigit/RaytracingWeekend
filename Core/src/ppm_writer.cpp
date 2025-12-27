@@ -1,11 +1,5 @@
 #include "ppm_writer.h"
 
-#include "vec3.h"
-#include "ray.h"
-#include "color.h"
-
-#include <iostream>
-
 
 
 // TODO: LOOK AT ADDING DIFFERENT OPTIONS WITH STBIMAGE
@@ -22,7 +16,12 @@ PPMWriter::PPMWriter(uint64_t width, uint64_t height)
 }
 
 // Camera
-color ray_color(const ray& r) {
+color ray_color(const ray& r, const hittable& world) {
+    hit_record rec;
+    if (world.hit(r, 0, infinity, rec)) {
+        return 0.5 * (rec.normal + color(1,1,1));
+    }
+    
     vec3 unit_dir = unit_vector(r.direction());
     float a = 0.5*(unit_dir.y() + 1.0);
     return (1.0 - a) * color(1.0, 1.0, 1.0) + a * color(0.5, 0.7, 1.0);
@@ -35,6 +34,11 @@ void PPMWriter::write()
     double viewport_height = 2.0;
     double viewport_width = viewport_height * (static_cast<double>(m_width)/m_height);
     point3 camera_center = point3(0, 0, 0);
+
+    hittable_list world;
+
+    world.add(std::make_shared<sphere>(point3(0,0,-1), 0.5));
+    world.add(std::make_shared<sphere>(point3(0,-100.5,-1), 100));
 
     vec3 viewport_u = vec3(viewport_width, 0, 0);
     vec3 viewport_v = vec3(0, -viewport_height, 0);
@@ -58,7 +62,7 @@ void PPMWriter::write()
             auto ray_direction = pixel_center - camera_center;
             ray r(camera_center, ray_direction);
 
-            color pixel_color = ray_color(r);
+            color pixel_color = ray_color(r, world);
             write_color(m_file, pixel_color);
         }
     }

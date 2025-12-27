@@ -1,10 +1,10 @@
 #include "main.h"
-#include <iostream>
-#include <core/core.h>
+
+#include <core/ppm_writer.h>
 
 int main(int argc, char* argv[]) 
 {
-    std::cout << "Hello World" << std::endl;
-    kindly();
+    PPMWriter w(256,256);
+    w.write();
     return 0;
 }

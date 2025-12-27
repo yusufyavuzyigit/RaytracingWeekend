@@ -3,6 +3,10 @@
 #include <filesystem>
 #include <fstream>
 
+#include "core.h"
+#include "hittable.h"
+#include "hittable_list.h"
+#include "sphere.h"
 
 class PPMWriter
 {
