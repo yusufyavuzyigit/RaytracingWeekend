@@ -21,4 +21,4 @@ TODO
 - `-DENABLE_BENCHMARKS=ON` to build benchmarks
 
 ## License
-This project is licensed under the terms of the license found in [LICENSE](LICENSE).
+Well, I mostly followed the book. IDK. Look at their license.

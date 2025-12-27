@@ -1,5 +1,10 @@
 #include "ppm_writer.h"
+
+#include "vec3.h"
+#include "color.h"
+
 #include <iostream>
+
 
 // TODO: LOOK AT ADDING DIFFERENT OPTIONS WITH STBIMAGE
 
@@ -23,15 +28,9 @@ void PPMWriter::write()
     for (uint64_t j = 0; j < m_height; j++) {
         std::cout << "Remaining lines: " << m_height - j << "\n";
         for (uint64_t i = 0; i < m_width; i++) {
-            double r = static_cast<double>(i) / (m_width-1);
-            double g = static_cast<double>(j) / (m_height-1);
-            double b = 0.0;
+            color pixel_color = color(static_cast<double>(i) / (m_width-1), static_cast<double>(j) / (m_height-1), 0.0);
 
-            int ir = static_cast<int>(255.999 * r);
-            int ig = static_cast<int>(255.999 * g);
-            int ib = static_cast<int>(255.999 * b);
-
-            m_file << ir << ' ' << ig << ' ' << ib << '\n';
+            write_color(m_file, pixel_color);
         }
     }
 }
