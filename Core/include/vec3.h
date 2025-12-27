@@ -10,8 +10,6 @@ public:
     constexpr vec3() noexcept : xyz{0, 0, 0} {}
     constexpr explicit vec3(double x, double y, double z) noexcept : xyz{x, y, z} {}
 
-    ~vec3() = default;
-
     constexpr double x() const noexcept {return xyz[0];}
     constexpr double y() const noexcept {return xyz[1];}
     constexpr double z() const noexcept {return xyz[2];}

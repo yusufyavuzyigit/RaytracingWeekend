@@ -1,0 +1,19 @@
+#pragma once
+
+#include "vec3.h"
+
+class ray
+{
+public:
+    constexpr ray() {};
+    constexpr ray(const point3& origin, const vec3& direction) : m_origin(origin), m_direction(direction) {}
+
+    constexpr const point3& origin() const { return m_origin; }
+    constexpr const vec3& direction() const { return m_direction; }
+
+    constexpr point3 at(double t) const { return m_origin + (t * m_direction); }
+
+private:
+    point3 m_origin;
+    vec3 m_direction;
+};
